@@ -11,11 +11,11 @@ def draw_plot():
 
     # Create first line of best fit
     result = linregress(df['Year'], df['CSIRO Adjusted Sea Level'])
-    plt.plot(pd.Series([df['Year'].min(), 2050]), result.slope * pd.Series([df['Year'].min(), 2050]) + result.intercept, color='orange', label=str(df['Year'].min()) + '-2050')
+    plt.plot(range(df['Year'].min(), 2051, 1), result.slope * range(df['Year'].min(), 2051, 1) + result.intercept, color='orange', label=str(df['Year'].min()) + '-2050')
 
     # Create second line of best fit
     result = linregress(df.loc[df['Year']>= 2000, 'Year'], df.loc[df['Year'] >= 2000, 'CSIRO Adjusted Sea Level'])
-    plt.plot(pd.Series([2000, 2050]), result.slope * pd.Series([2000, 2050]) + result.intercept, color='red', label='2000-2050')
+    plt.plot(range(2000, 2051, 1), result.slope * range(2000, 2051, 1) + result.intercept, color='red', label='2000-2050')
     
     # Add labels and title
     plt.ylabel('Sea Level (inches)')
